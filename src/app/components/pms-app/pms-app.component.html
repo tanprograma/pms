@@ -1,0 +1,24 @@
+<div class="main-container">
+  <div class="app-nav" *ngIf="nav">
+    <div
+      class="navdiv"
+      *ngFor="let store of data.stores.collection"
+      (click)="myFunc(store.store)"
+    >
+      <h3>{{ store.store }}</h3>
+    </div>
+  </div>
+
+  <div class="app-body" *ngIf="body">
+    <button (click)="toggleApp()">
+      <h2>
+        back :<span>{{ view }}</span>
+      </h2>
+    </button>
+    <app-shop
+      *ngFor="let shop of data.stores.collection"
+      [center]="shop.store"
+      [display]="view"
+    ></app-shop>
+  </div>
+</div>

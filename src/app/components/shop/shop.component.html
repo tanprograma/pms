@@ -1,0 +1,42 @@
+<div *ngIf="display == center">
+  <div class="shop-nav">
+    <div
+      class="navdiv"
+      (click)="toggleApp('issue')"
+      [class.applet]="view == 'issue'"
+    >
+      issue
+    </div>
+    <div
+      class="navdiv"
+      (click)="toggleApp('dispense')"
+      [class.applet]="view == 'dispense'"
+    >
+      dispense
+    </div>
+    <div
+      class="navdiv"
+      (click)="toggleApp('request')"
+      [class.applet]="view == 'request'"
+    >
+      request
+    </div>
+    <div
+      class="navdiv"
+      (click)="toggleApp('inventory')"
+      [class.applet]="view == 'inventory'"
+    >
+      inventory
+    </div>
+  </div>
+  <div class="shop-body">
+    <app-issue *ngIf="view == 'issue'" [center]="center"></app-issue>
+    <!-- <app-receive *ngIf="view == 'dispense'" [center]="center"></app-receive> -->
+    <app-dispense *ngIf="view == 'dispense'" [center]="center"></app-dispense>
+    <app-request *ngIf="view == 'request'" [center]="center"></app-request>
+    <app-inventory
+      *ngIf="view == 'inventory'"
+      [center]="center"
+    ></app-inventory>
+  </div>
+</div>

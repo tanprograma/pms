@@ -1,0 +1,10 @@
+.ctrl {
+  display: flex;
+  flex-flow: row wrap;
+}
+.ctrl input {
+  flex: 0 0 48%;
+}
+.ctrl input[type="number"] {
+  border: 2px solid black;
+}

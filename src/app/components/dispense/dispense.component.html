@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="nav">
+    <div class="navdiv" (click)="runDataView()">PRESCRIPTION</div>
+    <div class="navdiv" (click)="runFormView()">EDIT</div>
+  </div>
+  <div class="body">
+    <div class="main" *ngIf="dataView">
+      <p *ngIf="dataViewData.length == 0">please press edit button to add</p>
+      <table *ngIf="dataViewData.length > 0">
+        <thead>
+          <tr>
+            <th>sn</th>
+            <th>medicine</th>
+            <th>quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let med of dataViewData">
+            <td>{{ med.sn }}</td>
+            <td>{{ med.medicine }}</td>
+            <td>{{ med.quantity }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="main" *ngIf="formView">
+      <app-input-gen (sendInput)="createInputs($event)"></app-input-gen>
+      <app-dispense-form
+        [nofcontrols]="nofcontrols"
+        [medicines]="getMedicines()"
+        (sendFormValues)="onDispense($event)"
+      ></app-dispense-form>
+      <h3 *ngIf="message">medicines added successfuly</h3>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,69 @@
+header {
+  background-color: rgb(177, 189, 189);
+  height: 20vh;
+}
+.logocolor {
+  height: 5vh;
+  background-color: lightpink;
+}
+header h3,
+header h4 {
+  text-align: center;
+}
+.logo h3 {
+  height: 100%;
+  font-size: 50px;
+}
+header .logo {
+  height: 10vh;
+}
+nav ul {
+  height: 4vh;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* the speceial code */
+.navdiv {
+  flex: 1 0 30%;
+  margin: 5px;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navdiv:hover {
+  background-color: rgb(212, 206, 206);
+}
+
+.pms-nav,
+.pms-inner-nav {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.pms-inner-nav {
+  height: 8vh;
+}
+.pms-nav {
+  height: 5vh;
+}
+
+body {
+  height: 100vh;
+  background-color: bisque;
+}
+.applet {
+  background-color: rgb(212, 206, 206);
+}
+.pmsnav {
+  background-color: rgb(212, 206, 206);
+}

@@ -27,6 +27,7 @@ export class PmsAppComponent implements OnInit {
       this.data.inventory,
       this.data.stores,
       this.data.commodities,
+      this.data.units,
     ];
     reqs.forEach((req: any) => {
       this.fetchData(req);
@@ -39,7 +40,7 @@ export class PmsAppComponent implements OnInit {
 
   fetchData(req: any) {
     this.http.get(req.url).subscribe((res) => {
-      console.log('fetched stores successfully');
+      console.log('fetched item successfully');
       // this.data.stores = medicines.map((item: any) => {
       //   return { medicine: item.medicine };
       // });

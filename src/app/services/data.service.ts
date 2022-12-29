@@ -9,23 +9,27 @@ export class DataService {
   //   collection: [],
   // };
   commodities: any = {
-    url: 'http://localhost:3000/commodities',
+    url: 'http://localhost:5500/commodities',
+    collection: [],
+  };
+  units: any = {
+    url: 'http://localhost:5500/units',
     collection: [],
   };
   dispense: any = {
-    url: 'http://localhost:3000/dispense',
+    url: 'http://localhost:5500/dispensed',
     collection: [],
   };
   requests: any = {
-    url: 'http://localhost:3000/requests',
+    url: 'http://localhost:5500/requests',
     collection: [],
   };
   inventory: any = {
-    url: 'http://localhost:3000/inventory',
+    url: 'http://localhost:5500/inventory',
     collection: [],
   };
   stores: any = {
-    url: 'http://localhost:3000/stores',
+    url: 'http://localhost:5500/stores',
     collection: [],
   };
   constructor() {}

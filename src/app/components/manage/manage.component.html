@@ -1,0 +1,62 @@
+<div class="warehouse-view">
+  <!-- primary menu -->
+  <div class="navcontainer">
+    <div
+      [class.selected]="testview == menu.selector"
+      *ngFor="let menu of menudata"
+      class="test"
+      (click)="openNavDataContainer(menu.selector)"
+    >
+      {{ menu.title }}
+    </div>
+  </div>
+  <!-- secondary menu(toggled by primary menu) -->
+  <div class="navdatacontainer" *ngIf="navdatacontainer">
+    <div class="item1" *ngIf="testview == create.selector">
+      <app-closediv (click)="closeNavDataContainer()"></app-closediv>
+      <div
+        *ngFor="let item of forms"
+        class="test"
+        [class.selected]="form == item.form"
+      >
+        <app-insidenav
+          [class.selected]="form == item.form"
+          (click)="toggleForms(item.form)"
+          [site]="item.form"
+        ></app-insidenav>
+      </div>
+    </div>
+    <div class="item1" *ngIf="testview == update.selector">
+      <app-closediv (click)="closeNavDataContainer()"></app-closediv>
+      <div class="test">item</div>
+      <div class="test">item</div>
+    </div>
+    <div class="item1" *ngIf="testview == delete.selector">
+      <app-closediv (click)="closeNavDataContainer()"></app-closediv>
+      <div class="test">item</div>
+      <div class="test">item</div>
+      <div class="test">item</div>
+    </div>
+
+    <!-- <nav class="nav-view">
+      <app-menucontainer
+        [title]="'create forms'"
+        [forms]="forms"
+        (sendForm)="toggleForms($event)"
+        class="insidenav"
+      ></app-menucontainer>
+    </nav> -->
+  </div>
+
+  <!-- the view..toggled by secondary menu -->
+  <div class="body-view">
+    <div class="bf" *ngFor="let item of forms">
+      <app-basic-form
+        *ngIf="form == item.form"
+        [placeholder]="item.form"
+        [data]="item.options"
+        (sendValue)="item.submit($event)"
+      ></app-basic-form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+.warehouse-view {
+  position: relative;
+  display: flex;
+
+  height: 100vh;
+  border: 1.5px solid black;
+  padding: 10px;
+}
+nav {
+  flex: 0 0 15%;
+  background-color: aqua;
+}
+.nav-view {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  padding: 2px;
+}
+.insidenav {
+  flex: 0 0 100%;
+  height: 5vh;
+  background-color: rgb(202, 201, 201);
+  margin-top: 2px;
+  margin-bottom: 2px;
+  text-align: center;
+  font-size: medium;
+}
+.insidenav:hover {
+  background-color: blueviolet;
+}
+.body-view {
+  flex: 0 0 85%;
+  background-color: burlywood;
+}
+.selected {
+  background-color: chartreuse;
+}

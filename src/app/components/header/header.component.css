@@ -32,7 +32,7 @@ nav ul {
 
 /* the speceial code */
 .navdiv {
-  flex: 1 0 30%;
+  flex: 1 0 auto;
   margin: 5px;
   background-color: black;
   color: white;

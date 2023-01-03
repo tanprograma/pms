@@ -2,18 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { UrlsService } from 'src/app/services/urls.service';
 import { DataService } from 'src/app/services/data.service';
 import { HttpService } from 'src/app/services/http.service';
-import { Input } from '@angular/core';
+import { Input, Output, EventEmitter } from '@angular/core';
 @Component({
-  selector: 'app-pms-app',
-  templateUrl: './pms-app.component.html',
-  styleUrls: ['./pms-app.component.css'],
+  selector: 'app-chief-component',
+  templateUrl: './chief-component.component.html',
+  styleUrls: ['./chief-component.component.css'],
 })
-export class PmsAppComponent implements OnInit {
-  @Input() center?: any;
-  nav = true;
-  body = false;
-  statistics = true;
+export class ChiefComponentComponent implements OnInit {
   view?: any;
+  app = true;
+  manage = false;
+  // creates the names of navigation views
+  navData: any = [
+    { navname: 'outlets', default: true },
+    { navname: 'warehouses', default: true },
+    { navname: 'statistics' },
+    { navname: 'manage' },
+  ];
   constructor(
     private http: HttpService,
     public data: DataService,
@@ -21,6 +26,8 @@ export class PmsAppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.view = 'outlets';
+    this.data.inventory.url = `${this.data.inventory.url}/allstores`;
     const reqs = [
       this.data.dispense,
       this.data.requests,
@@ -28,16 +35,21 @@ export class PmsAppComponent implements OnInit {
       this.data.stores,
       this.data.commodities,
       this.data.units,
+      this.data.warehouses,
     ];
     reqs.forEach((req: any) => {
       this.fetchData(req);
     });
   }
-  toggleApp() {
-    this.nav = true;
-    this.body = false;
-  }
 
+  toggleManage() {
+    this.manage = true;
+    this.app = false;
+  }
+  toggleApp() {
+    this.manage = false;
+    this.app = true;
+  }
   fetchData(req: any) {
     this.http.get(req.url).subscribe((res) => {
       console.log('fetched item successfully');
@@ -47,11 +59,5 @@ export class PmsAppComponent implements OnInit {
       req.collection = res;
       console.log(req.collection);
     });
-  }
-  myFunc(x: any) {
-    console.log(x);
-    this.view = x;
-    this.nav = false;
-    this.body = true;
   }
 }

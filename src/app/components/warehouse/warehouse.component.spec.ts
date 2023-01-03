@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PmsAppComponent } from './pms-app.component';
+import { WarehouseComponent } from './warehouse.component';
 
-describe('PmsAppComponent', () => {
-  let component: PmsAppComponent;
-  let fixture: ComponentFixture<PmsAppComponent>;
+describe('WarehouseComponent', () => {
+  let component: WarehouseComponent;
+  let fixture: ComponentFixture<WarehouseComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PmsAppComponent ]
+      declarations: [ WarehouseComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PmsAppComponent);
+    fixture = TestBed.createComponent(WarehouseComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

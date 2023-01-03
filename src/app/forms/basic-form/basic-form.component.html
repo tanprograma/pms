@@ -1,0 +1,14 @@
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <input
+    list="text"
+    ngModel
+    name="value"
+    placeholder="input {{ placeholder }}"
+    autocomplete="off"
+  />
+  <datalist id="text">
+    <option *ngFor="let option of options" value="{{ option }}"></option>
+  </datalist>
+
+  <input type="submit" value="SUBMIT" />
+</form>

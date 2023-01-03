@@ -32,5 +32,9 @@ export class DataService {
     url: 'http://localhost:5500/stores',
     collection: [],
   };
+  warehouses: any = {
+    url: 'http://localhost:5500/warehouses',
+    collection: [],
+  };
   constructor() {}
 }

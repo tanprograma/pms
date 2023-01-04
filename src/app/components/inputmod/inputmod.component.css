@@ -1,0 +1,28 @@
+.main {
+  width: 50%;
+  background-color: burlywood;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 2px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#add,
+#remove {
+  flex: 0 0 40%;
+
+  text-align: center;
+}
+#add:hover,
+#remove:hover {
+  background-color: black;
+}
+#add {
+  background-color: rgb(38, 247, 38);
+  color: white;
+}
+#remove {
+  background-color: rgb(244, 15, 15);
+  color: white;
+}

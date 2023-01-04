@@ -35,11 +35,10 @@ export class DispenseFormComponent implements OnInit {
   }
   mapInput(f: NgForm) {
     return {
-      date: new Date().toLocaleDateString(),
       client: f.value.client,
-      medications: this.nofcontrols.map((item: any) => {
+      commodities: this.nofcontrols.map((item: any) => {
         return {
-          medicine: f.value[item.med].toLowerCase(),
+          commodity: f.value[item.med].toLowerCase(),
           quantity: f.value[item.quant],
         };
       }),

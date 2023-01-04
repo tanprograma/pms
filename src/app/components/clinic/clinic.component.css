@@ -18,6 +18,7 @@
 }
 .test {
   border: 1px solid black;
+
   min-height: 2vh;
   background-color: grey;
   margin-bottom: 2px;

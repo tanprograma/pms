@@ -1,0 +1,38 @@
+<div class="warehouse-view">
+  <!-- primary menu -->
+  <div class="navcontainer">
+    <div
+      [class.selected]="store == storeItem.store"
+      *ngFor="let storeItem of data.stores.collection"
+      class="test"
+      (click)="openNavDataContainer(storeItem.store)"
+    >
+      {{ storeItem.store }}
+    </div>
+  </div>
+  <!-- secondary menu(toggled by primary menu) -->
+  <div class="navdatacontainer" *ngIf="navdatacontainer">
+    <app-closediv (click)="closeNavDataContainer()"></app-closediv>
+    <div *ngFor="let dat of secondarymenudata" class="test">
+      <div [class.selected]="form == dat.selector">
+        <app-insidenav
+          [site]="dat.selector"
+          (click)="toggleForms(dat.selector)"
+        ></app-insidenav>
+      </div>
+    </div>
+  </div>
+
+  <!-- the view..toggled by secondary menu -->
+  <div class="body-view">
+    <div *ngIf="form == dispense.selector">
+      <!-- <app-input-gen (sendInput)="setnofcontrol($event)"></app-input-gen> -->
+      <app-inputmod [(nofcontrol)]="nofcontrols"></app-inputmod>
+      <app-dispense-form
+        [medicines]="mapMedicines()"
+        [nofcontrols]="nofcontrols.control"
+        (sendFormValues)="onDispense($event)"
+      ></app-dispense-form>
+    </div>
+  </div>
+</div>

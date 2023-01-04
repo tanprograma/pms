@@ -29,7 +29,7 @@ export class ChiefComponentComponent implements OnInit {
     this.view = 'outlets';
     this.data.inventory.url = `${this.data.inventory.url}/allstores`;
     const reqs = [
-      this.data.dispense,
+      this.data.dispensed,
       this.data.requests,
       this.data.inventory,
       this.data.stores,

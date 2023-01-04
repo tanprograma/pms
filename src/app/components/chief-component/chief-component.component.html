@@ -1,11 +1,12 @@
 <div class="chief-container">
   <app-header [navData]="navData" (sendView)="view = $event"></app-header>
 
-  <app-shops
+  <app-clinic *ngIf="view == 'outlets'"></app-clinic>
+  <!-- <app-shops
     *ngIf="view == 'outlets'"
     class="body fix"
     [(data)]="data"
-  ></app-shops>
+  ></app-shops> -->
   <app-warehouses
     [(data)]="data"
     class="warehouses"

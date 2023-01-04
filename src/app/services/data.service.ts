@@ -16,7 +16,7 @@ export class DataService {
     url: 'http://localhost:5500/units',
     collection: [],
   };
-  dispense: any = {
+  dispensed: any = {
     url: 'http://localhost:5500/dispensed',
     collection: [],
   };

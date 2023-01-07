@@ -1,0 +1,69 @@
+<div class="dispensed">
+  <div class="head">
+    <h2 class="nav">TODAY</h2>
+    <h2 class="nav" (click)="toggleSearch('search')">SEARCH</h2>
+    <h2 class="nav" (click)="toggleSearch('range')">REPORTS</h2>
+
+    <!-- <app-insidenav [site]="'hello'" [style]="style"></app-insidenav> -->
+  </div>
+  <div class="search" *ngIf="search">
+    <form
+      class="any-date"
+      *ngIf="form == 'search'"
+      (ngSubmit)="getDispensed(x)"
+      #x="ngForm"
+    >
+      <label for="date">DATE</label>
+      <input
+        id="date"
+        type="date"
+        placeholder="select date value"
+        name="date"
+        ngModel
+      />
+      <input type="submit" value="SEARCH" />
+    </form>
+    <form
+      class="range-date"
+      *ngIf="form == 'range'"
+      (ngSubmit)="getDispenseds(f)"
+      #f="ngForm"
+    >
+      <label for="start">START</label>
+      <input
+        id="start"
+        type="date"
+        placeholder="select start date"
+        name="min"
+        ngModel
+      />
+      <label for="end">END</label>
+      <input
+        id="end"
+        type="date"
+        placeholder="select end date"
+        name="max"
+        ngModel
+      />
+      <input type="submit" value="SEARCH" />
+    </form>
+  </div>
+  <div class="body">
+    <table>
+      <thead>
+        <tr>
+          <th>sn</th>
+          <th>commodity</th>
+          <th>quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of datas.dispensed">
+          <th>{{ data.sn }}</th>
+          <td>{{ data.commodity }}</td>
+          <td>{{ data.quantity }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

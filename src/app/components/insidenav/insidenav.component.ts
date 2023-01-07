@@ -7,6 +7,7 @@ import { Input } from '@angular/core';
 })
 export class InsidenavComponent implements OnInit {
   @Input() site?: any;
+  @Input() style?: any;
   constructor() {}
 
   ngOnInit(): void {}

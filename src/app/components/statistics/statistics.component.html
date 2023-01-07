@@ -1,0 +1,28 @@
+<div class="header">
+  <h2>{{ title }}</h2>
+</div>
+<div class="statistics-view">
+  <div class="navcontainer">
+    <div
+      *ngFor="let store of mapStores()"
+      class="test"
+      (click)="openNavData(store)"
+    >
+      {{ store }}
+    </div>
+  </div>
+  <div class="navdatacontainer" *ngIf="navdataopened">
+    <app-closediv (click)="closeNavData()"></app-closediv>
+
+    <div *ngFor="let store of mapStores()">
+      <div *ngIf="store == title">
+        <div class="test">dispensed {{ store }}</div>
+        <div class="test">issued {{ store }}</div>
+        <div class="test">received {{ store }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="body-view">
+    <app-dispensestat></app-dispensestat>
+  </div>
+</div>

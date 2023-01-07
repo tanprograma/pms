@@ -2,6 +2,7 @@
   <app-header [navData]="navData" (sendView)="view = $event"></app-header>
 
   <app-clinic *ngIf="view == 'outlets'"></app-clinic>
+  <app-statistics *ngIf="view == 'statistics'"></app-statistics>
   <!-- <app-shops
     *ngIf="view == 'outlets'"
     class="body fix"

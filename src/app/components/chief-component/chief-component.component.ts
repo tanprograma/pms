@@ -64,36 +64,40 @@ export class ChiefComponentComponent implements OnInit {
     });
   }
   fetchDispense() {
-    this.http
-      .get('https://tanprograma.github.io/tandbs/medicines.json')
-      .subscribe((res: any) => {
-        // console.log(res);
-        this.dismed.medicines = res.map((item: any, index: any) => {
-          return {
-            sn: index + 1,
-            commodity: item.medicine,
-            quantity: 0,
-          };
-        });
-        console.log(this.dismed.medicines);
-      });
-    this.http
-      .get('https://tanprograma.github.io/tandbs/dispensed.json')
-      .subscribe((res: any) => {
-        // console.log(res);
-        this.dismed.dispensed = res.map((item: any, index: any) => {
-          return {
-            date: new Date(item.date).toLocaleDateString(),
-            client: 'mainclinic dispensed',
-            commodities: item.medications.map((med: any) => {
-              return {
-                commodity: med.medicine,
-                quantity: med.quantity,
-              };
-            }),
-          };
-        });
-        console.log(this.dismed.dispensed);
-      });
+    this.http.get(this.dismed.commodities.url).subscribe((res: any) => {
+      this.dismed.commodities.collection = this.mapMedicines(res);
+    });
+    this.http.get(this.dismed.dispensed.url).subscribe((res: any) => {
+      this.dismed.dispensed.collection = this.mapDispensed(res);
+    });
+  }
+
+  mapMedicines(res: any) {
+    return res.map((item: any) => {
+      return {
+        id: item._id,
+        commodity: item.medicine,
+      };
+    });
+  }
+  mapDispensed(res: any) {
+    return res.map((item: any) => {
+      return {
+        date: this.convertDate(new Date(item.date).toLocaleDateString()),
+        id: item._id,
+        commodities: this.mapDispensedCommodities(item.medications),
+      };
+    });
+  }
+  convertDate(date: any) {
+    return new Date(date).valueOf();
+  }
+  mapDispensedCommodities(commodities: any) {
+    return commodities.map((item: any) => {
+      return {
+        commodity: item.medicine,
+        quantity: item.quantity,
+      };
+    });
   }
 }

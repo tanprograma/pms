@@ -4,92 +4,72 @@ import { DispenseService } from './dispense.service';
   providedIn: 'root',
 })
 export class TabledispService {
-  dispensed?: any;
+  dispensed: any = [];
   constructor(private data: DispenseService) {}
-  dispenseRecordsOnDate(date: any) {
-    this.dispensed = [];
-    const raw = this.getRaw(date);
-
-    this.finalize(raw);
+  getValueFromDoc(comparator: any, medications: any): any {
+    let value = 0;
+    medications.forEach((commodity: any) => {
+      if (comparator == commodity.commodity) value += commodity.quantity;
+    });
+    return value;
   }
-  dispenseRecordsOnRange(min: any, max: any) {
-    this.dispensed = [];
-    const raw = this.getRaws(min, max);
-
-    this.finalize(raw);
+  // return value from Documents
+  getValueFromDocs(comparator: any, docs: any): any {
+    let value = 0;
+    docs.forEach((doc: any) => {
+      value += this.getValueFromDoc(comparator, doc.commodities);
+    });
+    return value;
   }
-  //
-  getRaw(date: any) {
-    // works perfectly
-    return this.data.dispensed.filter((record: any) => {
-      return record.date == date;
+  // return the document
+  getReducedDoc(comparator: any, docs: any): any {
+    return {
+      commodity: comparator,
+      quantity: this.getValueFromDocs(comparator, docs),
+    };
+  }
+
+  filterDispensed(dispensed: any) {
+    return dispensed.filter((item: any) => {
+      return item.quantity != 0;
     });
   }
-  getRaws(min: any, max: any) {
-    // works perfectly
-    min = this.castTime(new Date(min).toLocaleDateString());
-    max = this.castTime(new Date(max).toLocaleDateString());
-    return this.data.dispensed.filter((record: any) => {
-      const test = this.castTime(new Date(record.date).toLocaleDateString());
-      return test >= min || test <= max;
-    });
-  }
-  castTime(date: any) {
-    const oldDate = new Date(date).valueOf();
-    // console.log(oldDate.setDate(oldDate.getDay()));
-    console.log(oldDate);
-    return oldDate;
-  }
-  // shared function
-  finalize(raws: any) {
-    this.mapQuantity(raws);
-    this.filter();
-    this.sort();
-  }
-  mapQuantity(raw: any) {
-    this.data.medicines.forEach((medicine: any) => {
-      let quantity = 0;
-      raw.forEach((item: any) => {
-        item.commodities.forEach((commodity: any) => {
-          if (commodity.commodity == medicine.commodity) {
-            quantity += commodity.quantity;
-          }
-        });
-      });
-
-      this.dispensed.push({
-        commodity: medicine.commodity,
-        quantity: quantity,
-      });
-    });
-  }
-  filter() {
-    this.dispensed = this.dispensed
-      .filter((item: any) => {
-        return item.quantity > 0;
-      })
-      .map((filtered: any, index: any) => {
-        return {
-          sn: index + 1,
-          commodity: filtered.commodity,
-          quantity: filtered.quantity,
-        };
-      });
-    console.log(this.dispensed);
-  }
-  sort() {
-    this.dispensed.sort((a: any, b: any) => {
-      const commodityA = a.commodity.toUpperCase(); // ignore upper and lowercase
-      const commodityB = b.commodity.toUpperCase(); // ignore upper and lowercase
-      if (commodityA < commodityB) {
-        return -1;
-      }
-      if (commodityA > commodityB) {
+  sortDispensed(dispensed: any) {
+    return dispensed.sort((a: any, b: any) => {
+      const name1 = a.commodity.toUpperCase();
+      const name2 = b.commodity.toUpperCase();
+      if (name1 > name2) {
         return 1;
       }
-
-      // names must be equal
+      if (name1 < name2) {
+        return -1;
+      }
       return 0;
     });
+  }
+  mapDispensed(dispensed: any): any {
+    return dispensed.map((item: any, index: any) => {
+      return {
+        sn: index + 1,
+        commodity: item.commodity,
+        quantity: item.quantity,
+      };
+    });
+  }
+  cleanDispensed(dispensed: any): any {
+    const filtered: any = this.filterDispensed(dispensed);
+    const sorted = this.sortDispensed(filtered);
+    const mapped = this.mapDispensed(sorted);
+    return mapped;
+  }
+
+  getDispensed(docs: any): any {
+    const dispensed: any = [];
+    this.data.commodities.collection.forEach((comparator: any) => {
+      const reducedDoc = this.getReducedDoc(comparator.commodity, docs);
+      dispensed.push(reducedDoc);
+    });
+    this.dispensed = this.cleanDispensed(dispensed);
+    // console.log(docs);
   }
 }

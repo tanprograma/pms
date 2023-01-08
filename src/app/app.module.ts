@@ -31,7 +31,6 @@ import { ClosedivComponent } from './components/closediv/closediv.component';
 import { ClinicComponent } from './components/clinic/clinic.component';
 import { InputmodComponent } from './components/inputmod/inputmod.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
-import { DispensestatComponent } from './components/dispensestat/dispensestat.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +61,6 @@ import { DispensestatComponent } from './components/dispensestat/dispensestat.co
     ClinicComponent,
     InputmodComponent,
     StatisticsComponent,
-    DispensestatComponent,
   ],
   imports: [BrowserModule, FontAwesomeModule, FormsModule, HttpClientModule],
   providers: [],

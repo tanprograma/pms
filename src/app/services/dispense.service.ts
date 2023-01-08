@@ -4,7 +4,14 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class DispenseService {
-  dispensed: any = [];
-  medicines: any = [];
+  dispensed: any = {
+    url: 'https://tanprograma.github.io/tandbs/dispensed.json',
+    collection: [],
+  };
+  commodities: any = {
+    url: 'https://tanprograma.github.io/tandbs/medicines.json',
+    collection: [],
+  };
+
   constructor() {}
 }

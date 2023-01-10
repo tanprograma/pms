@@ -9,10 +9,12 @@ import { ChiefcomponentComponent } from './components/chiefcomponent/chiefcompon
 import { HeaderComponent } from './components/header/header.component';
 import { BodyComponent } from './components/body/body.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
+import { AppRoutingModule } from './app-routing.module';
+import { PrintComponent } from './components/print/print.component';
 
 @NgModule({
-  declarations: [AppComponent, ChiefcomponentComponent, HeaderComponent, BodyComponent, StatisticsComponent],
-  imports: [BrowserModule, FontAwesomeModule, FormsModule, HttpClientModule],
+  declarations: [AppComponent, ChiefcomponentComponent, HeaderComponent, BodyComponent, StatisticsComponent, PrintComponent],
+  imports: [BrowserModule, FontAwesomeModule, FormsModule, HttpClientModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })

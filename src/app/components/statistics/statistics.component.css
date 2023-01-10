@@ -112,3 +112,13 @@ input[type="submit"]:hover {
   color: white;
   cursor: pointer;
 }
+.print {
+  height: 4%;
+  display: block;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.print button {
+  width: 100%;
+}

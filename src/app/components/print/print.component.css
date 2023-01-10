@@ -1,0 +1,28 @@
+.table {
+  flex: 1 1 auto;
+  overflow-y: scroll;
+}
+.table::-webkit-scrollbar {
+  display: none;
+}
+
+table {
+  font-size: larger;
+  border-collapse: collapse;
+  width: 70%;
+  color: black;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid black;
+}
+th,
+td {
+  border: 1px solid black;
+  text-align: left;
+}
+/* tbody tr td:nth-child(3) {
+  text-align: center;
+} */
+tbody tr:hover {
+  background-color: rgb(85, 232, 117);
+}

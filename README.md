@@ -1,4 +1,6 @@
-# PMS
+# about the project
+This project is for PMS, the app for managing inventory at various sites and warehouses with admin dashboard e.tc
+## PMS
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.3.
 

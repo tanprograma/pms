@@ -1,47 +1,12 @@
 <header>
-  <div class="logocolor">
-    <h4>"...meant to speed up development and testing</h4>
-  </div>
-  <div class="logo">
-    <h3>PHARMACY-MS</h3>
-  </div>
-  <div class="pms-nav logocolor">
-    <app-navdiv
-      [navname]="nav.navname"
-      [class.pmsnav]="view == nav.navname"
-      class="navdiv"
-      *ngFor="let nav of navData"
-      (sendView)="onClick($event)"
-    ></app-navdiv>
-    <!-- <app-navdiv [navname]="'OUTLETS'" class="navdiv"></app-navdiv>
-    <app-navdiv [navname]="'OUTLETS'" class="navdiv"></app-navdiv> -->
-    <!-- <div class="navdiv" [class.pmsnav]="app">OUTLETS</div>
-    <div class="navdiv" [class.pmsnav]="manage">STATISTICS</div>
-    <div class="navdiv" [class.pmsnav]="manage">MANAGE</div> -->
-  </div>
-  <!-- <div class="pms-nav">
-    <div class="navdiv" [class.pmsnav]="manage" (click)="toggleManage()">
-      MANAGE
-    </div>
-    <div class="navdiv" [class.pmsnav]="app" (click)="toggleApp()">OUTLETS</div>
-  </div> -->
-
-  <!-- <div class="logocolor nav">
-    <nav>
-      <ul>
-        <li (click)="toggleView('tandbs')">TANDBS</li>
-        <li (click)="toggleView('pms')">PMS</li>
-        <li>XCELL</li>
-        <li (click)="toggleView('cetamol')">CETAMOL</li>
-      </ul>
-    </nav>
-    <nav>
-      <ul>
-        <li>TANDBS</li>
-        <li>PMS</li>
-        <li>XCELL</li>
-        <li>CETAMOL</li>
-      </ul>
-    </nav>
-  </div> -->
+  <h2 class="title">PMS PRO</h2>
+  <nav>
+    <button
+      class="btn"
+      *ngFor="let view of data.views"
+      (click)="data.toggleView(view)"
+    >
+      {{ view | uppercase }}
+    </button>
+  </nav>
 </header>
